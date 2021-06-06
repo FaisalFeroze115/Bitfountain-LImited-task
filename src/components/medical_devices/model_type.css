@@ -1,0 +1,28 @@
+.model_types__container{
+    padding: 5px 60px;
+    display: grid;
+    align-items: top;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+}
+
+.model_types__card{
+    padding: 5px 20px;
+    background-color: azure;
+    border-radius: 10px;
+    border: 1px solid rgb(180, 211, 207);
+    transition: transform .6s;
+    cursor: pointer;
+}
+
+.model_types__card:hover{
+    transform: scale(1.1);
+}
+
+.model_types__card p{
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
