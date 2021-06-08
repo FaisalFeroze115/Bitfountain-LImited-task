@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './model_type.css';
-import Header from '../header/Header'
 import { Button, Modal } from 'react-bootstrap';
+import loader from '../../assets/loader.gif'
 
 const ModelTypes = () => {
 
     const [mediaTypes, setMediaTypes] = useState([]);
     const [modelData, setModelData] = useState([]);
+    const [mediaTitle, setMediaTitle] = useState('');
     const userInfo = JSON.parse(localStorage.getItem('user-info'));
     const access_token = userInfo.access_token;
     const brandIdRef = useRef([]);
@@ -62,7 +63,7 @@ const ModelTypes = () => {
                 }
             });
         const results = await res.json();
-        //console.log(results);
+        setMediaTitle(brand);
         setModelData(results);
         setShow(true);
     }
@@ -70,7 +71,7 @@ const ModelTypes = () => {
 
     return (
         <div className="model_types">
-            <Header/>
+            { mediaTypes.length > 0 ? 
             <div className="model_types__container">
                 {
                     mediaTypes.map((media, i) =>
@@ -81,11 +82,18 @@ const ModelTypes = () => {
                         </div>
                     )
                 }
+            </div> 
+            :
+            <div style={{display:'flex', alignItems: 'center', justifyContent: 'center', height: 'calc(100vh - 80px)'}}>
+                <img src={loader} />
             </div>
+            
+            }
+
 
             <Modal show={show} onHide={handleClose} size="lg">
                 <Modal.Header closeButton>
-                    <Modal.Title>title</Modal.Title>
+                    <Modal.Title>{mediaTitle}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -93,10 +101,13 @@ const ModelTypes = () => {
                     {
                         modelData.length > 0 ?
                             modelData.map(data=>
-                                <div key={data.Id}>
+                                <div key={data.Id} className="model_data_container">
                                     {
-
-                                        <p>{data.Name} {data.DisplayName} {data.Description}</p>
+                                        <div>
+                                            <p>{data.Name}</p>
+                                            <p>{data.DisplayName}</p>
+                                            <p>{data.Description}</p>
+                                        </div>
 
                                     }
                                 </div>

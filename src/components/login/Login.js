@@ -20,16 +20,17 @@ const Login = () => {
                 }
             });
             const result = await res.json();
-            localStorage.setItem('user-info',JSON.stringify(result));
-            //console.log(result);
-            //history.push('/add');
-            setEmail('');
-            setPassword('');
-            history.push('/modeltype');
-
-
+            console.log(result.access_token)
+            if(result.access_token){
+                localStorage.setItem('user-info',JSON.stringify(result));
+                setEmail('');
+                setPassword('');
+                history.push('/modeltype');
+            }else{
+                alert('User dose not exists !!!');
+            }
         }else{
-            alert('Please provide emailand password')
+            alert('Please provide email and password')
         }
 
     }
@@ -43,22 +44,37 @@ const Login = () => {
     return (
         <div className="login">
             <div className="login__container">
-                <input
-                 type="text"
-                 placeholder="email..."
-                 value={email}
-                 onChange={(e)=>setEmail(e.target.value)}
-                />
 
-                <input
-                 type="password"
-                 placeholder="password..."
-                 value={password}
-                 onChange={(e)=>setPassword(e.target.value)}
-                />
+                <div className="input_container">
+                    <i class="fa fa-envelope" style={{fontSize:'36px'}}></i>
+                    <input
+                    type="text"
+                    placeholder="Email..."
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
+                    />
+                </div>
 
-                <Button variant="primary" onClick={login}>Login</Button>
+                <div className="input_container">
+                    <i class="fa fa-lock" style={{fontSize:'42px'}}></i>
+                    <input
+                    type="password"
+                    placeholder="Password..."
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
+                    />
 
+                </div>
+
+                <div className="input_container">
+                    <div></div>
+                    <Button variant="primary" onClick={login}>Login</Button>
+                </div>
+                
+
+                
+
+                
 
             </div>
             

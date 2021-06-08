@@ -1,7 +1,7 @@
 import React from 'react'
 import './header.css'
 import { Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 
 const Header = () => {
@@ -20,7 +20,9 @@ const Header = () => {
                 {
                     localStorage.getItem('user-info') ?
                     <div>
-                        {/* <span>{localStorage.getItem('user-info')}</span> */}
+                        <Link to="/add" style={{color:'#fff', marginRight: '15px'}}>
+                            Add New Device Model
+                        </Link>
                         <Button variant="info" onClick={logout}>Logout</Button>
                     </div>
                     :null

@@ -3,7 +3,7 @@
     display: grid;
     align-items: top;
     justify-content: center;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
     grid-row-gap: 20px;
     grid-column-gap: 20px;
 }
@@ -25,4 +25,16 @@
     margin: 0;
     margin-bottom: 5px;
     font-size: 20px;
+}
+
+.model_data_container{
+    background-color: darkgray;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+}
+
+.model_types{
+    overflow-x: hidden;
 }

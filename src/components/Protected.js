@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import Header from './header/Header'
 
 const Protected = ({Component}) => {
 
@@ -7,14 +8,19 @@ const Protected = ({Component}) => {
 
     useEffect(()=>{
         if(!localStorage.getItem('user-info')){
-            history.push('/')
+            history.push('/');
         }
     },[])
 
 
     return (
         <div>
-            <Component/>
+            <Header/>
+            {
+                localStorage.getItem('user-info')  ?
+                <Component/> : null
+            }
+            
         </div>
     )
 }
