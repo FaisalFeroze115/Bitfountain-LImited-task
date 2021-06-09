@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Bitfountain-LImited-Assign-Task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Functionality
 
-## Available Scripts
+# Login
 
-In the project directory, you can run:
+User must login to access the web app. Without Login user can't go different route.
+User Credentials -
 
-### `npm start`
+Email: Mozell.Jacobi@yahoo.com
+Password: password
 
-Runs the app in the development mode.\
+# Available Medical devices
+
+After login user will be redirected to available medical devices route. All the data are coming from the given api.
+I am showing all the devices in a box view. For every row 4 devices data is showing. If the device's description and comment is not there then these data will not display. Also hovering to every box there is a smooth transition effect. In this route, I also included a preloader.
+
+# Selecting/Clicking a Medical devices
+
+After clicking a device box, I am holding that box's brandId and Name data and then calling the modeldata api with these brandId and Name. After calling the api I am getting that device's model data and showing them in a ovarlay dialog. If any device's model data is not found then I am showing 'no data found' message.
+
+# Adding a new medical device
+
+I also created a Header section where I included two buttons. Log out and Add a new device button.
+Clicking on add a new device button, the web page will take me to the device addition page. From the a new device can be added. Also fetching data from /devicetype route and showing the data in a select option. select option is showing the device type name and storing the corresponding value. After filling up all the fields, the form can be submited. After Submission I am showing a modal which will say that the new device is added. In the Modal there is two button. 'add anohter' and 'view all'. If user click 'add another' then user will be in the same route so that user can add another device. If user clicks 'view all', then user will be redirected to the medical device listing page.
+
+# Logout
+
+In the header there is a logout button. If a user clicks the button user session will be destroy and user will be redirected to login page. user must login again to access all the functionality.
+
+# 4040 Page
+
+I also added a 404 page. If a user write invalid route in the URL user will the send to the 404 page.
+
+### Run the Assignment
+
+To run the project download the files from github and run `npm start` in the root directory.
+
+It will run the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
