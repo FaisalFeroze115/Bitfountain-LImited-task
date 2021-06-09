@@ -1,0 +1,14 @@
+.model_form_container{
+    width: 60%;
+    padding: 40px;
+    background-color: rgb(105, 105, 101);
+    color: #fff;
+    border-radius: 10px;
+}
+
+.add_model{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 80px);
+}

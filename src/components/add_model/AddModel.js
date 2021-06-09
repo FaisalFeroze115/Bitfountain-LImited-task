@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import './add_model.css'
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 
 const AddModel = () => {
 
@@ -11,6 +12,10 @@ const AddModel = () => {
     const userInfo = JSON.parse(localStorage.getItem('user-info'));
     const access_token = userInfo.access_token;
     const [deviceTypes, setDeviceTypes] = useState([])
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [newModel, setNewModel] = useState([])
 
     const addModel = async (e) =>{
         e.preventDefault();
@@ -31,8 +36,14 @@ const AddModel = () => {
                 }
             });
         const result = await res.json();
+        setNewModel(result);
+        setShow(true);
+        setBrandId('');
+        setName('');
+        setTypeId('');
+        setComment('');
 
-        console.log(result)
+        // console.log(result)
     }
 
     useEffect( async ()=>{
@@ -55,22 +66,18 @@ const AddModel = () => {
             <Form onSubmit={addModel}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Brand Id</Form.Label>
-                    <Form.Control type="text" placeholder="" onChange={e=>setBrandId(e.target.value)} />
+                    <Form.Control type="text" placeholder="" value={brandId} onChange={e=>setBrandId(e.target.value)} required/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="" onChange={e=>setName(e.target.value)}/>
+                    <Form.Control type="text" placeholder="" value={name} onChange={e=>setName(e.target.value)} required/>
                 </Form.Group>
 
-                {/* <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Type ID</Form.Label>
-                    <Form.Control type="number" placeholder="" onChange={e=>setTypeId(e.target.value)}/>
-                </Form.Group> */}
-
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Control as="select" onChange={e=>setTypeId(e.target.value)}>
-                        <option>Type ID</option>
+                    <Form.Label>Type ID</Form.Label>
+                    <Form.Control required  as="select" value={typeId} onChange={e=>setTypeId(e.target.value)}>
+                        <option value=''>Select an option</option>
                         {
                             deviceTypes.map(type_id=>
                                 <option key={type_id.Id} value={type_id.Id}>{type_id.Description}</option>
@@ -81,7 +88,7 @@ const AddModel = () => {
 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Comment</Form.Label>
-                    <Form.Control type="text" placeholder="" onChange={e=>setComment(e.target.value)}/>
+                    <Form.Control type="text" placeholder="" value={comment} onChange={e=>setComment(e.target.value)}/>
                 </Form.Group>
                
 
@@ -89,6 +96,29 @@ const AddModel = () => {
             </Form>
 
             </div>
+
+            <Modal show={show} onHide={handleClose} size="lg">
+                <Modal.Header closeButton>
+                    <Modal.Title>New Device</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                   <p>{newModel.BrandId} New Device Model is added...</p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Add Another
+                    </Button>
+                    <Link to="/modeltype">
+                        <Button variant="info">
+                            View avaiable medical devices
+                        </Button>
+                    </Link>
+
+                </Modal.Footer>
+            </Modal>
+
         </div>
     )
 }
