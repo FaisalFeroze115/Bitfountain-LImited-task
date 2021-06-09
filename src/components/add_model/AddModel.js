@@ -63,6 +63,7 @@ const AddModel = () => {
     return (
         <div className="add_model">
             <div className="model_form_container">
+                <h2>Add a new Device Model</h2>
             <Form onSubmit={addModel}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Brand Id</Form.Label>
@@ -90,9 +91,14 @@ const AddModel = () => {
                     <Form.Label>Comment</Form.Label>
                     <Form.Control type="text" placeholder="" value={comment} onChange={e=>setComment(e.target.value)}/>
                 </Form.Group>
-               
+            
+                <Button type="submit" variant="info">Submit</Button>
 
-                <Button type="submit" variant="primary">Submit</Button>
+                <Link style={{marginLeft: '10px'}} to="/modeltype">
+                    <Button variant="info">
+                        Back
+                    </Button>
+                </Link>
             </Form>
 
             </div>
@@ -103,16 +109,16 @@ const AddModel = () => {
                 </Modal.Header>
 
                 <Modal.Body>
-                   <p>{newModel.BrandId} New Device Model is added...</p>
+                   <p>{newModel.BrandId} New Device Model is added!</p>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="info" onClick={handleClose}>
                         Add Another
                     </Button>
                     <Link to="/modeltype">
-                        <Button variant="info">
-                            View avaiable medical devices
+                        <Button variant="secondary">
+                            View All
                         </Button>
                     </Link>
 

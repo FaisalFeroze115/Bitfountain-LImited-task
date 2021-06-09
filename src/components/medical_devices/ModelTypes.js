@@ -18,6 +18,7 @@ const ModelTypes = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [visible, setVisible] = useState(false)
 
 
 
@@ -52,8 +53,8 @@ const ModelTypes = () => {
     const getMediaData = async (index) => {
         let brand = brandIdRef.current[index].innerHTML;
         let model = brandNameRef.current[index].innerHTML;
-        // console.log(brandIdRef.current[index].innerHTML);
-        // console.log(brandNameRef.current[index].innerHTML);
+        //  console.log(brandIdRef.current[index].innerHTML);
+        //  console.log(brandNameRef.current[index].innerHTML);
         const res = await fetch(`http://163.47.115.230:30000/api/overview/modeldata/${brand}/${model}`,{
                 method: "Get",
                 headers: {
@@ -69,6 +70,7 @@ const ModelTypes = () => {
     }
 
 
+
     return (
         <div className="model_types">
             { mediaTypes.length > 0 ? 
@@ -76,9 +78,32 @@ const ModelTypes = () => {
                 {
                     mediaTypes.map((media, i) =>
                         <div className="model_types__card" key={media.Id} onClick={()=>{getMediaData(i)}}>
-                            <p ref={addToBrandId}>{media.BrandId}</p>
-                            <p ref={addToBrandName}>{media.Name}</p>
-                            <p>{media.Description}</p>
+                            <p>
+                                <span style={span_style}>BrandId: </span> 
+                                <span ref={addToBrandId}>{media.BrandId}</span> 
+                            </p>
+
+                            <p>
+                                <span style={span_style}>Name: </span> 
+                                <span ref={addToBrandName}>{media.Name}</span> 
+                            </p>
+                        {
+                            media.Description &&
+                            <p>
+                                <span style={span_style}>Description:</span> {media.Description}
+                            </p>
+
+                        }
+
+                        {
+                            media.Comment &&
+                            <p>
+                                <span style={span_style}>Comment:</span> {media.Comment}
+                            </p>
+                        }
+                            
+                           
+
                         </div>
                     )
                 }
@@ -104,9 +129,9 @@ const ModelTypes = () => {
                                 <div key={data.Id} className="model_data_container">
                                     {
                                         <div>
-                                            <p>{data.Name}</p>
-                                            <p>{data.DisplayName}</p>
-                                            <p>{data.Description}</p>
+                                            <p>Name: {data.Name}</p>
+                                            <p>Display Name: {data.DisplayName}</p>
+                                            <p>Description: {data.Description}</p>
                                         </div>
 
                                     }
@@ -124,10 +149,12 @@ const ModelTypes = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-
         </div>
     )
+}
+
+const span_style = {
+    fontWeight: 600,
 }
 
 export default ModelTypes

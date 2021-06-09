@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './login.css'
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom'
  
 const Login = () => {
@@ -8,7 +8,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const login = async () =>{
+    const login = async (e) =>{
+        e.preventDefault();
         if(email && password){
             let info = {email, password};
             const res = await fetch('http://163.47.115.230:30000/api/login',{
@@ -44,32 +45,34 @@ const Login = () => {
     return (
         <div className="login">
             <div className="login__container">
+                <Form onSubmit={login}>
+                    <div className="input_container">
+                        <i class="fa fa-envelope" style={{fontSize:'36px'}}></i>
+                        <input
+                        type="text"
+                        placeholder="Type Your Email"
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
+                        />
+                    </div>
 
-                <div className="input_container">
-                    <i class="fa fa-envelope" style={{fontSize:'36px'}}></i>
-                    <input
-                    type="text"
-                    placeholder="Email..."
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
-                    />
-                </div>
+                    <div className="input_container">
+                        <i class="fa fa-lock" style={{fontSize:'42px'}}></i>
+                        <input
+                        type="password"
+                        placeholder="Type Your Password"
+                        value={password}
+                        onChange={(e)=>setPassword(e.target.value)}
+                        />
 
-                <div className="input_container">
-                    <i class="fa fa-lock" style={{fontSize:'42px'}}></i>
-                    <input
-                    type="password"
-                    placeholder="Password..."
-                    value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
-                    />
+                    </div>
 
-                </div>
-
-                <div className="input_container">
-                    <div></div>
-                    <Button variant="primary" onClick={login}>Login</Button>
-                </div>
+                    <div className="input_container">
+                        <div></div>
+                        <Button type="submit" style={{background: 'cadetblue', fontWeight:'bold'}} variant="primary">LOGIN</Button>
+                    </div>
+                </Form>
+                
                 
 
                 
